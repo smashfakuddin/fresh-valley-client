@@ -1,0 +1,33 @@
+.container {
+    border: 1px solid gray;
+    width: 50%;
+    margin: 30px auto;
+}
+
+.input-form {
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+
+}
+
+.input-form>h2 {
+    font-size: 25px;
+    color: gray;
+}
+
+.input-form>p {
+    text-align: center;
+}
+
+.input-form>input {
+    padding: 10px;
+    margin: 10px 0px;
+    border: 0;
+    border-bottom: 1px solid black;
+}
+
+.submit-button {
+    background-color: rgb(65, 109, 65);
+    border-radius: 5px;
+}
