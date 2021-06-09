@@ -16,8 +16,6 @@ import EditProduct from './EditProduct';
 const routes = [
     {
         path: "/manage-product",
-        exact: true,
-        sidebar: () => <></>,
         main: () => <ManageProduct />
     },
     {
@@ -65,7 +63,6 @@ const Sidebar = () => {
                             <Route
                                 key={index}
                                 path={route.path}
-                                exact={route.exact}
                                 children={<route.main />}
                             />
                         ))}
