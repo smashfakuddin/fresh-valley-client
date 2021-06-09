@@ -27,11 +27,7 @@ const routes = [
     {
         path: "/edit-product",
         main: () => <EditProduct />
-    },
-    {
-        path: "/test",
-        main: () => <h2>test</h2>
-    },
+    }
 ];
 
 
