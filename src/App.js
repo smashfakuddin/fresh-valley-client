@@ -16,24 +16,14 @@ function App() {
   return (
     <div className="App">
       <Router>
-        {/* <Nav /> */}
-        <Sidebar/>
+        <Nav />
+        {/* <Sidebar/> */}
         <Switch>
-          <Route path="/home">
-            <Products />
-          </Route>
-          <Route path="/login">
-            <Login/>
-          </Route>
-          <Route path="/admin">
-            <Admin/>
-          </Route>
-          <Route path="/add-product">
-            <AddProduct/>
-          </Route>
-          <Route path="/">
-            <Products />
-          </Route>
+          <Route path="/home" component={Products} />
+          <Route path="/login" component={Login} />
+          <Route path="/admin" component={Admin} />
+          <Route path="/add-product" component={AddProduct,Sidebar} />
+          <Route path="/" component={Products} />
         </Switch>
       </Router>
     </div>

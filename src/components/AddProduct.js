@@ -1,9 +1,10 @@
 import React from 'react';
+import './AddProduct.css';
 
 const AddProduct = () => {
     return (
         <div>
-            <h2>this is add productfgfffffffffffffffffffffffffffffffffffffffffffff</h2>
+            <h3>Add product</h3>
         </div>
     );
 };

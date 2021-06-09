@@ -18,13 +18,13 @@ const Nav = () => {
                                         <a className='nav-link ' href="/">Home</a>
                                     </li>
                                     <li>
-                                        <a className='nav-link ' href="/about">Orders</a>
+                                        <a className='nav-link ' href="/orders">Orders</a>
                                     </li>
                                     <li>
-                                        <a className='nav-link ' href="/portfolio">Admin</a>
+                                        <a className='nav-link ' href="/admin">Admin</a>
                                     </li>
                                     <li>
-                                        <a className='nav-link ' href="/skill">Deals</a>
+                                        <a className='nav-link ' href="/deals">Deals</a>
                                     </li>                                   
                                 </ul>
                             </div>
