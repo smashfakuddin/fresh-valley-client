@@ -18,18 +18,20 @@ const routes = [
         path: "/manage-product",
         exact: true,
         sidebar: () => <></>,
-        main: () => <ManageProduct/>
+        main: () => <ManageProduct />
     },
     {
         path: "/add-product",
-        sidebar: () => <></>,
-        main: () => <AddProduct/>
+        main: () => <AddProduct />
     },
     {
         path: "/edit-product",
-        sidebar: () => <></>,
-        main: () => <EditProduct/>
-    }
+        main: () => <EditProduct />
+    },
+    {
+        path: "/test",
+        main: () => <h2>test</h2>
+    },
 ];
 
 
@@ -43,33 +45,22 @@ const Sidebar = () => {
                         width: "20%",
                         background: "rgba(32,61,55,255)",
                         height: '100vh',
-                        minWidth:'350px'
+                        minWidth: '350px'
                     }}
                 >
-                    <ul style={{ listStyleType: "none", padding: '10px',margin:'20px 50px',color:"black" }}>
+                    <ul style={{ listStyleType: "none", padding: '10px', margin: '20px 50px', color: "black" }}>
                         <li className='test'>
-                            <Link to="/manage-product"><FaTools/>   Manage Product</Link>
+                            <Link to="/manage-product"><FaTools />   Manage Product</Link>
                         </li>
                         <br />
                         <li className="test">
-                            <Link to="/add-product"><FaPlus/>   Add Product</Link>
+                            <Link to="/add-product"><FaPlus />   Add Product</Link>
                         </li>
                         <br />
                         <li className='test'>
-                            <Link to="/edit-product"><FaPen/>   Edit Product</Link>
+                            <Link to="/edit-product"><FaPen />   Edit Product</Link>
                         </li>
                     </ul>
-
-                    <Switch>
-                        {routes.map((route, index) => (
-                            <Route
-                                key={index}
-                                path={route.path}
-                                exact={route.exact}
-                                children={<route.sidebar />}
-                            />
-                        ))}
-                    </Switch>
                 </div>
 
                 <div style={{ flex: 1, padding: "10px" }}>

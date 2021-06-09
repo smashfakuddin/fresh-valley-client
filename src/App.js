@@ -17,7 +17,6 @@ function App() {
     <div className="App">
       <Router>
         <Nav />
-        {/* <Sidebar/> */}
         <Switch>
           <Route path="/home" component={Products} />
           <Route path="/login" component={Login} />
