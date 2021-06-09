@@ -6,9 +6,10 @@ const ProductCart = (props) => {
 
     return (
         <div className='col-lg-4 col-md-6 col-12 '>
-            <div class="card">
+            <div class="card shadow p-3 mb-5 bg-white rounded">
                 <img src={img} alt="product Image" />
-                <h5 class=" align-center card-body">{name}</h5>
+                <h5 class="card-body">{name}</h5>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
                 <div class="card-body d-flex justify-content-between">
                     <h4>${price}</h4>
                     <button className="btn btn-success">BUY NOW</button>

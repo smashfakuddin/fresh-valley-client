@@ -2,12 +2,14 @@
     border: 1px solid gray;
     width: 50%;
     margin: 30px auto;
+    min-width: 400px;
 }
 
 .input-form {
     display: flex;
     flex-direction: column;
     padding: 50px;
+    min-width: 300px;
 
 }
 
