@@ -1,0 +1,21 @@
+table {
+    text-align: left;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.table-heading {
+    padding: 15px; 
+    background-color: #f5f6fa;
+    text-align: center;
+    justify-content: space-between; 
+}
+
+tr {
+    display: flex;
+    margin: 15px 0px;
+    display: flex;
+    padding: 0px 15px;
+    justify-content: space-between;
+}
