@@ -39,10 +39,10 @@ const Sidebar = () => {
                         width: "20%",
                         background: "rgba(32,61,55,255)",
                         height: '100vh',
-                        minWidth: '350px'
+                        minWidth: '270px'
                     }}
                 >
-                    <ul style={{ listStyleType: "none", padding: '10px', margin: '20px 50px', color: "black" }}>
+                    <ul style={{ listStyleType: "none", padding: '10px', margin: '20px 20px', color: "black" }}>
                         <li className='test'>
                             <Link to="/manage-product"><FaTools />   Manage Product</Link>
                         </li>

@@ -1,6 +1,7 @@
 import React from 'react';
 import './Login.css';
 import { FaGoogle } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 const Login = () => {
     return (
@@ -13,11 +14,10 @@ const Login = () => {
                     <input type="password" placeholder='Password' />
                     <input type="password" placeholder='Confirm password' />
                     <input className='submit-button' type="submit" />
-                    <p>Already have an account? <a href="">Login</a></p>
+                    <p>Already have an account? <Link to="/login">Login</Link></p>
                     <button className="btn btn-secondary"><FaGoogle/>       continue with google</button>
                 </div>
             </div>
-
         </>
     );
 };

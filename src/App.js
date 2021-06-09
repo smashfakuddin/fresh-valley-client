@@ -1,16 +1,16 @@
-import logo from './logo.svg';
 import './App.css';
 import Nav from './components/Nav';
 import Products from './components/Products';
 import Login from './components/Login';
+import Admin from './components/Admin';
+import AddProduct from './components/AddProduct';
+import Sidebar from './components/Sidebar';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
-import Admin from './components/Admin';
-import AddProduct from './components/AddProduct';
-import Sidebar from './components/Sidebar';
+
 
 function App() {
   return (
@@ -18,10 +18,9 @@ function App() {
       <Router>
         <Nav />
         <Switch>
-          <Route path="/home" component={Products} />
-          <Route path="/login" component={Login} />
-          <Route path="/admin" component={Admin} />
-          <Route path="/add-product" component={AddProduct,Sidebar} />
+          <Route exact path="/home" component={Products} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/admin" component={Admin} />
           <Route path="/" component={Products} />
         </Switch>
       </Router>
