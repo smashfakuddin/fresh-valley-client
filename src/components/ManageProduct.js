@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 import './ManageProduct.css';
 
 const ManageProduct = () => {
+    const [manageProduct, setManageProduct] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:4000/products')
+            .then(res => res.json())
+            .then(data => setManageProduct(data))
+    })
     return (
         <div>
             <h4 className='fw-bold'>Manage Product</h4>
@@ -14,34 +20,16 @@ const ManageProduct = () => {
                     <th>Action</th>
                 </tr>
                 <div>
-                
-                <tr>
-                    <td>Alfreds Futterkiste</td>
-                    <td>200gm</td>
-                    <td>200$</td>
-                    <td><FaEdit/> <FaTrashAlt/></td>
-                </tr>
-                <tr>
-                    <td>Alfreds Futterkiste</td>
-                    <td>200gm</td>
-                    <td>200$</td>
-                    <td><FaEdit/> <FaTrashAlt/></td>
-                </tr>
-                <tr>
-                    <td>Alfreds Futterkiste</td>
-                    <td>200gm</td>
-                    <td>200$</td>
-                    <td><FaEdit/> <FaTrashAlt/></td>
-                </tr>
-                <tr>
-                    <td>Alfreds Futterkiste</td>
-                    <td>200gm</td>
-                    <td>200$</td>
-                    <td><FaEdit/>   <FaTrashAlt/></td>
-                </tr>
-
+                    {
+                        manageProduct.map(pd =>
+                            <tr>
+                                <td>{pd.name}</td>
+                                <td>200gm</td>
+                                <td>${pd.price}</td>
+                                <td><FaEdit /> <FaTrashAlt /></td>
+                            </tr>)
+                    }
                 </div>
-                
             </table>
         </div>
     );

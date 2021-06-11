@@ -18,4 +18,9 @@ tr {
     display: flex;
     padding: 0px 15px;
     justify-content: space-between;
+    text-align: center;
+}
+td,th{
+    width: 200px;
+    text-align: center;
 }

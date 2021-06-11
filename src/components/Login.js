@@ -15,7 +15,7 @@ const Login = () => {
                     <input type="password" placeholder='Confirm password' />
                     <input className='submit-button' type="submit" />
                     <p>Already have an account? <Link to="/login">Login</Link></p>
-                    <button className="btn btn-secondary"><FaGoogle/>       continue with google</button>
+                    <button className="btn btn-secondary "><FaGoogle className='text-danger' />       continue with google</button>
                 </div>
             </div>
         </>
