@@ -14,7 +14,7 @@ const AddProduct = () => {
             img: imageURL
         }
         console.log(productData, data);
-        fetch('https://gentle-gorge-99522.herokuapp.com/addProduct', {
+        fetch('http://localhost:4000/addProduct', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -47,9 +47,9 @@ const AddProduct = () => {
                 <div className="product-input">
                     <div className="input-field">
                         <label htmlFor="product-name"><strong>Product Name</strong></label>
-                        <input name="name" defaultValue="Product Name" {...register("name")} />
+                        <input name="name" defaultValue="" placeholder='Product Name' {...register("name")} />
                         <label htmlFor="price"><strong>Add Price</strong></label>
-                        <input name="price" defaultValue="0" {...register("price")} />
+                        <input name="price" defaultValue="" placeholder='Enter Price' {...register("price")} />
                     </div>
                     <div className="input-field">
                         <label htmlFor="wight"><strong>Wight</strong></label>

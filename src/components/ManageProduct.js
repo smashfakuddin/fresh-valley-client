@@ -26,7 +26,7 @@ const ManageProduct = () => {
                                 <td>{pd.name}</td>
                                 <td>200gm</td>
                                 <td>${pd.price}</td>
-                                <td><FaEdit /> <FaTrashAlt /></td>
+                                <td><FaEdit /> <FaTrashAlt  /></td>
                             </tr>)
                     }
                 </div>
