@@ -13,7 +13,7 @@ if (firebase.apps.length === 0) {
 }
 
 const Login = () => {
-    // const [newUser, setNewUser] = useState(false);
+    const [newUser, setNewUser] = useState(false);
     const [user, setUser] = useState({
         isSignIn: false,
         name: '',
@@ -66,13 +66,13 @@ const Login = () => {
                     console.log(res);
                     const newUserInfo = { ...user };
                     newUserInfo.error = "";
-                    newUserInfo.success="Successfully Created Your Account,You Can Log In Now!!!";
+                    newUserInfo.success = "Successfully Created Your Account,You Can Log In Now!!!";
                     setUser(newUserInfo);
                 })
                 .catch((error) => {
                     const newUserInfo = { ...user };
                     newUserInfo.error = error.message;
-                    newUserInfo.success=" ";
+                    newUserInfo.success = ' ';
                     setUser(newUserInfo);
                 });
         }
@@ -83,21 +83,23 @@ const Login = () => {
         <>
             <div className="container">
                 <div className='input-form'>
-                    <h2>Create an Account</h2>
+                    {newUser ? <h2>Create an Account</h2> : <h2>Log In Now</h2>}
                     <form onSubmit={handleSubmit} className='input-form'>
-                        <input onBlur={handleBlur} type="text" name="name" placeholder='Name' />
+                        {newUser && <input onBlur={handleBlur} type="text" name="name" placeholder='Name' />}
                         <input onBlur={handleBlur} type="text" name="email" placeholder='Username or Email' required />
                         <input onBlur={handleBlur} type="password" name="password" placeholder='Password' required />
                         {/* <input type="password" placeholder='Confirm password'  /> */}
-                        <input className='submit-button' type="submit" />
+                        <input className='btn btn-success' type="submit" />
                     </form>
-                    {/* {user.success && <p>User {newUser ? "created" : 'log in'} successfully</p>} */}
-                    <p>Already have an account? <Link to="/login">Login</Link></p>
-                    <p>{}</p>
+                    <div className='text-center'>
+                        <label htmlFor="newUser">Already Have an account? </label> {"   "}
+                        <input type="checkbox" name="newUser" id="" onChange={() => setNewUser(!newUser)} /> Login
+                    </div>
                     <p style={{ color: 'red' }}>{user.error}</p>
-                    <p style ={{color: 'green'}}>{user.success}</p>
+                    <p style={{ color: 'green' }}>{user.success}</p>
                     <button onClick={handleSignIn} className="btn btn-secondary "><FaGoogle className='text-danger' />       continue with google</button>
                 </div>
+
             </div>
         </>
     );
