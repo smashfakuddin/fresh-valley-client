@@ -11,11 +11,16 @@ import { UserContext } from '../App';
 if (firebase.apps.length === 0) {
     firebase.initializeApp(firebaseConfig);
 }
+
 const Login = () => {
+    // const [newUser, setNewUser] = useState(false);
     const [user, setUser] = useState({
         isSignIn: false,
         name: '',
-        email: ''
+        email: '',
+        password: '',
+        error: '',
+        success: ''
     });
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
 
@@ -24,8 +29,8 @@ const Login = () => {
     const handleSignIn = () => {
         firebase.auth()
             .signInWithPopup(provider)
-            .then((result) => {
-                const { displayName, email } = result.user;
+            .then((res) => {
+                const { displayName, email } = res.user;
                 const signedInUser = {
                     isSignIn: true,
                     name: displayName,
@@ -33,27 +38,70 @@ const Login = () => {
                 }
                 setLoggedInUser(signedInUser);
             });
+    };
 
-    }
+    const handleBlur = (e) => {
+        let isFormValid = true;
+        if (e.target.name === 'email') {
+            isFormValid = /\S+@\S+\.\S+/.test(e.target.value);
+        };
+
+        if (e.target.name === 'password') {
+            const isPasswordValid = e.target.value.length > 6;
+            const passwordHasNumber = /\d{1}/.test(e.target.value);
+            isFormValid = (isPasswordValid && passwordHasNumber);
+        };
+        if (isFormValid) {
+            const newUserInfo = { ...user };
+            newUserInfo[e.target.name] = e.target.value;
+            setUser(newUserInfo);
+
+        };
+    };
+
+    const handleSubmit = (e) => {
+        if (user.name && user.password) {
+            firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
+                .then(res => {
+                    console.log(res);
+                    const newUserInfo = { ...user };
+                    newUserInfo.error = "";
+                    newUserInfo.success="Successfully Created Your Account,You Can Log In Now!!!";
+                    setUser(newUserInfo);
+                })
+                .catch((error) => {
+                    const newUserInfo = { ...user };
+                    newUserInfo.error = error.message;
+                    newUserInfo.success=" ";
+                    setUser(newUserInfo);
+                });
+        }
+        e.preventDefault();
+    };
 
     return (
         <>
             <div className="container">
                 <div className='input-form'>
                     <h2>Create an Account</h2>
-                    <form action="" method="post" className='input-form'>
-                        <input type="text" placeholder='Name' />
-                        <input type="text" placeholder='Username or Email' />
-                        <input type="password" placeholder='Password' />
-                        <input type="password" placeholder='Confirm password' />
+                    <form onSubmit={handleSubmit} className='input-form'>
+                        <input onBlur={handleBlur} type="text" name="name" placeholder='Name' />
+                        <input onBlur={handleBlur} type="text" name="email" placeholder='Username or Email' required />
+                        <input onBlur={handleBlur} type="password" name="password" placeholder='Password' required />
+                        {/* <input type="password" placeholder='Confirm password'  /> */}
                         <input className='submit-button' type="submit" />
                     </form>
+                    {/* {user.success && <p>User {newUser ? "created" : 'log in'} successfully</p>} */}
                     <p>Already have an account? <Link to="/login">Login</Link></p>
+                    <p>{}</p>
+                    <p style={{ color: 'red' }}>{user.error}</p>
+                    <p style ={{color: 'green'}}>{user.success}</p>
                     <button onClick={handleSignIn} className="btn btn-secondary "><FaGoogle className='text-danger' />       continue with google</button>
                 </div>
             </div>
         </>
     );
 };
+
 
 export default Login;
