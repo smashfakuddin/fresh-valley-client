@@ -82,14 +82,14 @@ const Login = () => {
     return (
         <>
             <div className="container">
-                <div className='input-form'>
+                <div className='input-form text-center'>
                     {newUser ? <h2>Create an Account</h2> : <h2>Log In Now</h2>}
                     <form onSubmit={handleSubmit} className='input-form'>
                         {newUser && <input onBlur={handleBlur} type="text" name="name" placeholder='Name' />}
                         <input onBlur={handleBlur} type="text" name="email" placeholder='Username or Email' required />
                         <input onBlur={handleBlur} type="password" name="password" placeholder='Password' required />
                         {/* <input type="password" placeholder='Confirm password'  /> */}
-                        <input className='btn btn-success' type="submit" />
+                        <input className='btn btn-success' type="submit" value={newUser? 'Sign Up' : 'Log In'}/>
                     </form>
                     <div className='text-center'>
                         <label htmlFor="newUser">Already Have an account? </label> {"   "}
