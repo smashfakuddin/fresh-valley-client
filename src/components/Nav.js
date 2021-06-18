@@ -1,7 +1,14 @@
 import React from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../App';
+import './Nav.css';
+import { FaUserCircle } from "react-icons/fa";
+import userEvent from '@testing-library/user-event';
 
 const Nav = () => {
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext)
+
     return (
         <>
             <div className="container-fluid bg-light align-center align-middle ">
@@ -27,7 +34,13 @@ const Nav = () => {
                                         <li>
                                             <Link className='nav-link ' to="/deals">Deals</Link>
                                         </li>
-                                        <Link to="/login" className="btn btn-success">Log in</Link>
+                                        
+                                            {loggedInUser.email ?
+                                                <img className='photo' src={loggedInUser.img} alt={loggedInUser.email.substring(0, 6).toUpperCase()} />
+                                                :
+                                                <Link to="/login" className="btn btn-success">Log In</Link>}
+                                        
+
                                     </ul>
                                 </div>
                             </div>

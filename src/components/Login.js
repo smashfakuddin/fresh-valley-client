@@ -17,6 +17,7 @@ const Login = () => {
     const [user, setUser] = useState({
         isSignIn: false,
         name: '',
+        img: '',
         email: '',
         password: '',
         error: '',
@@ -24,17 +25,20 @@ const Login = () => {
     });
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
 
-
+console.log(user);
+console.log(loggedInUser)
     const provider = new firebase.auth.GoogleAuthProvider();
     const handleSignIn = () => {
         firebase.auth()
             .signInWithPopup(provider)
             .then((res) => {
-                const { displayName, email } = res.user;
+                console.log(res.user);
+                const { displayName, email, photoURL } = res.user;
                 const signedInUser = {
                     isSignIn: true,
                     name: displayName,
-                    email: email
+                    email: email,
+                    img: photoURL
                 }
                 setLoggedInUser(signedInUser);
             });
@@ -60,7 +64,7 @@ const Login = () => {
     };
 
     const handleSubmit = (e) => {
-        if (user.name && user.password) {
+        if (newUser && user.name && user.password) {
             firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
                 .then(res => {
                     console.log(res);
@@ -76,6 +80,23 @@ const Login = () => {
                     setUser(newUserInfo);
                 });
         }
+
+        if (!newUser && user.email && user.password) {
+            firebase.auth().signInWithEmailAndPassword(user.email, user.password)
+            .then((res) => {
+                const newUserInfo = { ...user };
+                newUserInfo.error = "";
+                newUserInfo.success = "Successfully Log In Your Account";
+                setUser(newUserInfo);
+                setLoggedInUser(user);
+            })
+            .catch((error) => {
+                const newUserInfo = { ...user };
+                newUserInfo.error = error.message;
+                newUserInfo.success = ' ';
+                setUser(newUserInfo);
+            });
+        }
         e.preventDefault();
     };
 
@@ -89,11 +110,11 @@ const Login = () => {
                         <input onBlur={handleBlur} type="text" name="email" placeholder='Username or Email' required />
                         <input onBlur={handleBlur} type="password" name="password" placeholder='Password' required />
                         {/* <input type="password" placeholder='Confirm password'  /> */}
-                        <input className='btn btn-success' type="submit" value={newUser? 'Sign Up' : 'Log In'}/>
+                        <input className='btn btn-success' type="submit" value={newUser ? 'Sign Up' : 'Log In'} />
                     </form>
                     <div className='text-center'>
-                        <label htmlFor="newUser">Already Have an account? </label> {"   "}
-                        <input type="checkbox" name="newUser" id="" onChange={() => setNewUser(!newUser)} /> Login
+                        <label htmlFor="newUser">Don't Have an account? </label> {"   "}
+                        <input type="checkbox" name="newUser" id="" onChange={() => setNewUser(!newUser)} /> Sign Up
                     </div>
                     <p style={{ color: 'red' }}>{user.error}</p>
                     <p style={{ color: 'green' }}>{user.success}</p>
