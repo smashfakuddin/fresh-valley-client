@@ -34,13 +34,15 @@ const Nav = () => {
                                         <li>
                                             <Link className='nav-link ' to="/deals">Deals</Link>
                                         </li>
-                                        
-                                            {loggedInUser.email ?
-                                                <img className='photo' src={loggedInUser.img} alt={loggedInUser.email.substring(0, 6).toUpperCase()} />
-                                                :
-                                                <Link to="/login" className="btn btn-success">Log In</Link>}
-                                        
 
+                                        {loggedInUser.email ?
+                                            loggedInUser.img === '' ?
+                                                <FaUserCircle className='icon' /> :
+                                                <img className='photo' src={loggedInUser.img} alt='' /> :
+                                            null}
+                                        {loggedInUser.email ?
+                                            null :
+                                            <Link to="/login" className="btn btn-success">Log In</Link>}
                                     </ul>
                                 </div>
                             </div>
