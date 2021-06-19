@@ -9,6 +9,10 @@ import {
   Route,
 } from "react-router-dom";
 import { createContext, useState } from 'react';
+import Order from './components/Order';
+import PrivateRoute from './components/PrivateRoute';
+import PrivateRouteAdmin from './components/PrivateRouteAdmin';
+import Deals from './components/Deals';
 
 export const UserContext = createContext();
 
@@ -20,10 +24,27 @@ function App() {
         <Router>
           <Nav />
           <Switch>
-            <Route exact path="/home" component={Products} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/admin" component={Admin} />
-            <Route path="/" component={Products} />
+            <Route exact path="/home" >
+              <Products />
+            </Route>
+
+            <Route path="/login" >
+              <Login />
+            </Route >
+
+            <PrivateRouteAdmin path="/admin" >
+              <Admin />
+            </PrivateRouteAdmin >
+            <PrivateRoute exact path="/orders" >
+              <Order />
+            </PrivateRoute>
+            <PrivateRoute exact path="/deals" >
+              <Deals />
+            </PrivateRoute>
+
+            <Route path='/'>
+              <Products />
+            </Route>
           </Switch>
         </Router>
       </UserContext.Provider>

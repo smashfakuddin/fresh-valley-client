@@ -88,6 +88,7 @@ const Login = () => {
                 setLoggedInUser(user);
             })
             .catch((error) => {
+                console.log(error);
                 const newUserInfo = { ...user };
                 newUserInfo.error = error.message;
                 newUserInfo.success = ' ';

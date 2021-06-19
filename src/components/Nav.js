@@ -40,9 +40,11 @@ const Nav = () => {
                                                 <FaUserCircle className='icon' /> :
                                                 <img className='photo' src={loggedInUser.img} alt='' /> :
                                             null}
+
                                         {loggedInUser.email ?
                                             null :
                                             <Link to="/login" className="btn btn-success">Log In</Link>}
+                                            
                                     </ul>
                                 </div>
                             </div>
