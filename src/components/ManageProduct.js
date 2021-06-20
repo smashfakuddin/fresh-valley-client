@@ -5,13 +5,13 @@ import './ManageProduct.css';
 const ManageProduct = () => {
     const [manageProduct, setManageProduct] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:4000/products')
+        fetch('https://tranquil-badlands-20427.herokuapp.com/products')
             .then(res => res.json())
             .then(data => setManageProduct(data))
     }, []);
 
     const handleDeleteProduct = (id) => {
-        fetch(`http://localhost:4000/delete/${id}`, {
+        fetch(`https://tranquil-badlands-20427.herokuapp.com/delete/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json)

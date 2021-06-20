@@ -4,9 +4,8 @@ import { useForm } from "react-hook-form";
 import axios from 'axios';
 
 const AddProduct = () => {
-
     const { register, handleSubmit, watch, errors } = useForm();
-    const [imageURL, setImageURL] = useState(null)
+    const [imageURL, setImageURL] = useState(null);
     const onSubmit = data => {
         const productData = {
             name: data.name,
@@ -14,7 +13,7 @@ const AddProduct = () => {
             img: imageURL
         }
         console.log(productData, data);
-        fetch('http://localhost:4000/addProduct', {
+        fetch('https://tranquil-badlands-20427.herokuapp.com/addProduct', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -56,7 +55,8 @@ const AddProduct = () => {
                         <input type="text" name="Wight" placeholder='Enter Wight' />
                         <label htmlFor="add-photo"><strong>Add Photo</strong></label>
                         <input name="exampleRequired" type='file' onChange={handleImageUpload} />
-                        {imageURL? <p style={{color:'green'}}>Link generated!! </p>: <p style={{color: 'red'}}>You have To wait For Image upload</p>}
+                        {imageURL ? <p style={{ color: 'green' }}>Link generated!! </p> :
+                            <p style={{ color: 'red' }}>You have To wait For Image upload !!</p>}
                         <div className="d-flex justify-content-end">
                             <input className='btn btn-secondary w-25' type="submit" value="Submit" />
                         </div>
