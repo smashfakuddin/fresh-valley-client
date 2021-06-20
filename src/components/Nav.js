@@ -4,11 +4,20 @@ import { Link } from 'react-router-dom';
 import { UserContext } from '../App';
 import './Nav.css';
 import { FaUserCircle } from "react-icons/fa";
-import userEvent from '@testing-library/user-event';
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 
 const Nav = () => {
-    const [loggedInUser, setLoggedInUser] = useContext(UserContext)
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+    const renderTooltip = props => (
+        <Tooltip {...props}>{loggedInUser.email}</Tooltip>
+    );
 
+    const handleSignOut=()=>{
+        const newUserInfo = { ...loggedInUser};
+        newUserInfo.email = '';
+        setLoggedInUser(newUserInfo);
+    }
     return (
         <>
             <div className="container-fluid bg-light align-center align-middle ">
@@ -37,14 +46,20 @@ const Nav = () => {
 
                                         {loggedInUser.email ?
                                             loggedInUser.img === '' ?
-                                                <FaUserCircle className='icon' /> :
-                                                <img className='photo' src={loggedInUser.img} alt='' /> :
+                                                <OverlayTrigger placement="bottom" overlay={renderTooltip}>
+                                                    <FaUserCircle onClick={handleSignOut} className='icon' />
+                                                </OverlayTrigger> :
+
+                                                <OverlayTrigger placement="bottom" overlay={renderTooltip}>
+                                                    <img onClick={handleSignOut} className='photo' src={loggedInUser.img} alt='' />
+                                                </OverlayTrigger> :
+
                                             null}
 
                                         {loggedInUser.email ?
                                             null :
                                             <Link to="/login" className="btn btn-success">Log In</Link>}
-                                            
+
                                     </ul>
                                 </div>
                             </div>

@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { UserContext } from '../App';
 import Admin from './Admin';
+import Deals from './Deals';
 
 const PrivateRouteAdmin = ({ children, ...rest }) => {
 
