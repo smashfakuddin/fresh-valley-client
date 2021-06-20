@@ -34,7 +34,7 @@ const AddProduct = () => {
         axios.post('https://api.imgbb.com/1/upload', imageData)
             .then(function (response) {
                 setImageURL(response.data.data.display_url);
-                console.log(response);
+                console.log(response.data.data.display_url);
             })
             .catch(function (error) {
                 console.log(error);
@@ -56,6 +56,7 @@ const AddProduct = () => {
                         <input type="text" name="Wight" placeholder='Enter Wight' />
                         <label htmlFor="add-photo"><strong>Add Photo</strong></label>
                         <input name="exampleRequired" type='file' onChange={handleImageUpload} />
+                        {imageURL? <p style={{color:'green'}}>Link generated!! </p>: <p style={{color: 'red'}}>You have To wait For Image upload</p>}
                         <div className="d-flex justify-content-end">
                             <input className='btn btn-secondary w-25' type="submit" value="Submit" />
                         </div>

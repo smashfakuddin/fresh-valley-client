@@ -8,7 +8,17 @@ const ManageProduct = () => {
         fetch('http://localhost:4000/products')
             .then(res => res.json())
             .then(data => setManageProduct(data))
-    })
+    }, []);
+
+    const handleDeleteProduct = (id) => {
+        fetch(`http://localhost:4000/delete/${id}`, {
+            method: 'DELETE'
+        })
+            .then(res => res.json)
+            .then(result => {
+                console.log('deleted success')
+            })
+    }
     return (
         <div>
             <h4 className='fw-bold'>Manage Product</h4>
@@ -26,7 +36,10 @@ const ManageProduct = () => {
                                 <td>{pd.name}</td>
                                 <td>200gm</td>
                                 <td>${pd.price}</td>
-                                <td><FaEdit /> <FaTrashAlt  /></td>
+                                <td>
+                                    <FaEdit />
+                                    <FaTrashAlt class='deleteIcon' onClick={() => handleDeleteProduct(pd._id)} />
+                                </td>
                             </tr>)
                     }
                 </div>
