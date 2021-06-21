@@ -104,6 +104,7 @@ const Login = () => {
             <div className="container">
                 <div className='input-form text-center'>
                     {newUser ? <h2>Create an Account</h2> : <h2>Log In Now</h2>}
+                    <p>"E-mail:admin@admin.com, pass: admin123" use it for admin feature</p>
                     <form onSubmit={handleSubmit} className='input-form'>
                         {newUser && <input onBlur={handleBlur} type="text" name="name" placeholder='Name' />}
                         <input onBlur={handleBlur} type="text" name="email" placeholder='Username or Email' required />
